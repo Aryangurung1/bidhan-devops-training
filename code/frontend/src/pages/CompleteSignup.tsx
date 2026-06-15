@@ -12,7 +12,7 @@ import {
 import { useAuth, useUser, SignInButton } from "@clerk/clerk-react";
 import axios from "axios";
 
-const USER_API = "/api/users";
+const USER_API = "http://localhost:3000/api/users";
 
 const CompleteSignup: React.FC = () => {
   const [firstName, setFirstName] = useState("");
@@ -43,28 +43,14 @@ const CompleteSignup: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "#f5f5f5",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", display: "flex", alignItems: "center" }}>
       <Container maxWidth="sm">
         <Paper sx={{ p: 4 }}>
           <Typography variant="h5" gutterBottom>
             Complete Your Profile
           </Typography>
           {!isSignedIn ? (
-            <Box
-              sx={{
-                mt: 3,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            <Box sx={{ mt: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Please sign in to continue
               </Typography>
@@ -79,8 +65,9 @@ const CompleteSignup: React.FC = () => {
                     bgcolor: "#4285F4",
                     "&:hover": { bgcolor: "#357ae8" },
                   }}
+                 
                 >
-                  Sign in
+                  Sign in 
                 </Button>
               </SignInButton>
             </Box>
