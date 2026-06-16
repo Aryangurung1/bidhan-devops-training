@@ -21,7 +21,7 @@ import Editor from "./Editor";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { marked } from "marked";
+// import { marked } from "marked";
 import { openPreview } from "../util";
 
 const USER_API = "http://localhost:3000/api/users";

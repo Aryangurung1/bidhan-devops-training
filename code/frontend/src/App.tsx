@@ -1,10 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import AllBlogs from "./pages/AllBlogs";
 import SingleBlog from "./pages/SingleBlog";
 import CreateBlog from "./pages/CreateBlog";
 import CompleteSignup from "./pages/CompleteSignup";
-import { ClerkProvider, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
-import { CssBaseline, ThemeProvider, createTheme, Box, Typography, Button } from "@mui/material";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+} from "@clerk/clerk-react";
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  Box,
+  Typography,
+  Button,
+} from "@mui/material";
 
 const clerkPublishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const theme = createTheme();
@@ -14,7 +31,7 @@ function App() {
     <ClerkProvider publishableKey={clerkPublishableKey}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{ minHeight: "100vh", width: '100%', bgcolor: "#f5f5f5" }}>
+        <Box sx={{ minHeight: "100vh", width: "100%", bgcolor: "#f5f5f5" }}>
           <Router>
             <Routes>
               <Route path="/" element={<Navigate to="/blogs" replace />} />
@@ -28,7 +45,15 @@ function App() {
                     </SignedIn>
                     <SignedOut>
                       <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5" }}>
-                        <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <Box
+                          sx={{
+                            minHeight: "100vh",
+                            bgcolor: "#f5f5f5",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
                           <Box
                             sx={{
                               bgcolor: "#fff",
@@ -41,13 +66,15 @@ function App() {
                               alignItems: "center",
                             }}
                           >
-                            <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+                            <Typography
+                              variant="h5"
+                              sx={{ mb: 2, fontWeight: 700 }}
+                            >
                               Please sign in to continue
                             </Typography>
                             <SignInButton
                               mode="modal"
-                              redirectUrl="/blogs/create"
-                              signInOptions={{ strategy: "oauth_google" }}
+                              fallbackRedirectUrl="/blogs/create"
                             >
                               <Button
                                 variant="contained"
@@ -78,7 +105,15 @@ function App() {
                 path="/sign-in"
                 element={
                   <SignedOut>
-                    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Box
+                      sx={{
+                        minHeight: "100vh",
+                        bgcolor: "#f5f5f5",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <SignInButton />
                     </Box>
                   </SignedOut>
