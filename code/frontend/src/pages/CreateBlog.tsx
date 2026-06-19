@@ -21,8 +21,18 @@ import Editor from "./Editor";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { marked } from "marked";
+// import { marked } from "marked";
 import { openPreview } from "../util";
+
+// Backend errors may arrive as a string or as an object like { message, status }.
+// Normalize to a string so it can be rendered safely.
+const getErrorMessage = (err: any, fallback: string): string => {
+    const data = err?.response?.data;
+    const detail = data?.error ?? data?.message ?? data;
+    if (typeof detail === "string") return detail;
+    if (detail?.message) return detail.message;
+    return fallback;
+};
 
 const USER_API = "http://localhost:3000/api/users";
 const BLOG_API = "http://localhost:3001/api/blogs";
@@ -107,7 +117,7 @@ const CreateBlog: React.FC = () => {
             );
             setUserExists(true);
         } catch (err: any) {
-            setSignupError(err.response?.data?.error || "Failed to create user");
+            setSignupError(getErrorMessage(err, "Failed to create user"));
         } finally {
             setSignupLoading(false);
         }
@@ -134,7 +144,7 @@ const CreateBlog: React.FC = () => {
             );
             navigate("/blogs");
         } catch (err: any) {
-            setError(err.response?.data?.error || "Failed to create blog");
+            setError(getErrorMessage(err, "Failed to create blog"));
         } finally {
             setLoading(false);
         }
