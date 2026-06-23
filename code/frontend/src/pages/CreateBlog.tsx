@@ -34,8 +34,8 @@ const getErrorMessage = (err: any, fallback: string): string => {
     return fallback;
 };
 
-const USER_API = "http://localhost:3000/api/users";
-const BLOG_API = "http://localhost:3001/api/blogs";
+const USER_API = "/api/users";
+const BLOG_API = "/api/blogs";
 
 const generatePreview = async (arg: string) => {
 //     const parser = new DOMParser();
